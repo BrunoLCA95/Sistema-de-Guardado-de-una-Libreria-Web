@@ -1,0 +1,15 @@
+.fondo{
+    background-color:gray;
+}
+.divP{
+    align-items: center;
+    margin: 5px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.buttonAgregar{
+    align-items: flex-end;
+    margin: 5px;
+    margin-right: auto;
+    margin-left: auto;
+}
