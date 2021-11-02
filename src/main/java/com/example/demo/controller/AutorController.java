@@ -6,12 +6,13 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.entity.Autor;
 import com.example.demo.service.AutorService;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/autor")
 public class AutorController {
 
 	@Autowired
@@ -46,33 +47,47 @@ public class AutorController {
 	}
 	
 	
-	@GetMapping("/autor-from")
+	@PostMapping("/autor-from")
 	public String save(Autor autor, ModelMap model) {
 
 
 		int comp = 0;
 		String a1=autor.getNombre();
 		String a2;
+		String id1 = autor.getId();
+		String id2;
+		int comp2 = 0;
 		for (Autor autor2 : autorService.getAll()) {
 			a2=autor2.getNombre();
+			id2=autor2.getId();
+			if ( id1.equals(id2)) {
+				comp2 = 1;
+			}
 			if (a1.equalsIgnoreCase(a2)) {
 				comp = 1;
 			}
 		}
-
-		if(autor.getNombre() == null){
-			model.put("error", "Falta completar campos");
-		}else{
-			if (comp != 1) {
-				model.put("exito", "Autor Guardado");
-				autorService.save(autor);
+		if (comp2 != 1) {
+			if(autor.getNombre() == ""){
+				model.put("error", "Falta completar campos");
 			}else{
-				model.put("error", "El Autor ya se encuentra cargado");
-				return "redirect:/autor-from/";
+				if (comp != 1) {
+					model.put("exito", "Autor Guardado");
+					autorService.save(autor);
+				}else{
+					model.put("error", "El Autor ya se encuentra cargado");
+					return "autor-from";
+				}
+	
 			}
-
+		}else{
+			model.put("exito", "Autor Guardado");
+			autorService.save(autor);
 		}
-		return "redirect:/autor-from/";
+
+
+
+		return "autor-from";
 	}
 	
 	
