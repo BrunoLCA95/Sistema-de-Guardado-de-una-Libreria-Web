@@ -17,7 +17,7 @@
     <div class="container form-control divP" style="background-color: gray;">
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 	        <div class="container form-control divP" style="background-color: black;">
-	        	<a href="/editorial-from/000000000" class="btn btn-primary">Agregar</a>
+	        	<a href="/editoriales/editorial-from/000000000" class="btn btn-primary">Agregar</a>
 	        </div>
 	    </div>
         <div class="container form-control table-responsive" style="background-color: black;">
@@ -32,16 +32,14 @@
                         <td></td>
                     </tr>
                 </thead>
-                <tbody th:each="editoriales : ${list}">
+                <tbody th:each="editorial : ${list}">
                     
                     <tr>
-                        <th scope="row" th:text="${editoriales.id}"></th>
-                        <th scope="row" th:text="${editoriales.nombre}"></th>
-                        <th scope="row" th:text="${editoriales.alta}"></th>
-                        <!--<td th:text="$(autor.nombre)"></td>
-                        <td th:text="$(autor.alta)"></td> -->
-                        <td><a href="#" class="btn btn-warning" th:href="@{/editorial-from/{id}(id=${editoriales.id})}">Modificar</a></td>
-                        <td><a class="btn btn-danger" th:href="@{/editorial-delete/{id}(id=${editoriales.id})}">Eliminar</a></td>
+                        <th scope="row" th:text="${editorial.id}"></th>
+                        <th scope="row" th:text="${editorial.nombre}"></th>
+                        <th scope="row" th:text="${editorial.nombre}"></th>
+                        <td><a href="#" class="btn btn-warning" th:href="@{/editorial-from/{id}(id=${editorial.id})}">Modificar</a></td>
+                        <td><a class="btn btn-danger" th:href="@{/editorial-delete/{id}(id=${editorial.id})}">Eliminar</a></td>
                     </tr>
                 </tbody>
             </table>

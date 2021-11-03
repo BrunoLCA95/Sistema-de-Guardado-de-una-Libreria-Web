@@ -43,7 +43,7 @@ public class AutorController {
 		}else {
 			model.addAttribute("autor", new Autor());	
 		}
-		return "autor-from";
+		return "/autor/autor-from";
 	}
 	
 	
@@ -76,7 +76,7 @@ public class AutorController {
 					autorService.save(autor);
 				}else{
 					model.put("error", "El Autor ya se encuentra cargado");
-					return "autor-from";
+					return "redirect:/autor/autor-from/";
 				}
 	
 			}
@@ -87,7 +87,7 @@ public class AutorController {
 
 
 
-		return "autor-from";
+		return "redirect:/autor/autor-from/";
 	}
 	
 	
@@ -95,7 +95,7 @@ public class AutorController {
 	public String delete(@PathVariable String id, Model model) {
 		autorService.delete(id);
 		
-		return "redirect:/";
+		return "redirect:/autor/";
 	}
 	
 

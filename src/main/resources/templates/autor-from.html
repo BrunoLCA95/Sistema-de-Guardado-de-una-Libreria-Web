@@ -31,7 +31,7 @@
     <div class="container form-control divP" style="background-color: gray;">
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 	        <div class="container form-control divP" style="background-color: black;">
-	        	<form th:action="@{/autor-from/}" th:object="${autor}" method="post">
+	        	<form th:action="@{/autor/autor-from/}" th:object="${autor}" method="post">
 	        	<input type="hidden" name="id" id="id" th:field="*{id}">
 	        		<div class="row g-3 align-items-center">
 	        			<div class="col-auto">
@@ -68,7 +68,7 @@
 	        </div>
 	    </div>
 	    <div class="container form-control divP d-grid gap-2 d-md-flex justify-content-md-end" style="background-color: black;">
-        	<a href="/" class="btn btn-primary me-md-2">Volver</a>
+        	<a href="/autor/" class="btn btn-primary me-md-2">Volver</a>
     	</div>
     </div>
 

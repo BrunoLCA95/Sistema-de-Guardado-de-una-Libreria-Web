@@ -17,7 +17,7 @@ public class Editorial {
 
     private String nombre;
     
-    private boolean alta;
+    private String alta;
 
     public String getId() {
         return id;
@@ -35,11 +35,11 @@ public class Editorial {
         this.nombre = nombre;
     }
 
-    public boolean isAlta() {
+    public String isAlta() {
         return alta;
     }
 
-    public void setAlta(boolean alta) {
+    public void setAlta(String alta) {
         this.alta = alta;
     }
 
