@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libros</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color: black;">
+	<div>
+		<div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
+			<div class="card-body">
+				<h5 class="card-title">Exito</h5>
+				<p class="card-text" th:text="${exito}"></p>
+			</div>
+		</div>
+		<div th:if="${error}!=null" class="card text-white bg-danger mb-3" >
+			<div class="card-body">
+				<h5 class="card-title">Error</h5>
+				<p class="card-text" th:text="${error}"></p>
+			</div>
+		</div>
+	</div>
+    
+    <div class="container form-control divP" style="background-color: gray;">
+        <label>Registros de Libros</label>
+    </div>
+    <div class="container form-control divP" style="background-color: gray;">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+	        <div class="container form-control divP" style="background-color: black;">
+	        	<form th:action="@{/libros-from}" th:object="${libro}" method="post">
+	        	<input type="hidden" name="id" id="id" th:field="*{id}">
+	        		<div class="row g-3 align-items-center">
+	        			<div class="col form-control" style="background-color: gray;">
+	        				<div class="row align-items-center">
+	        					<div class="col">
+	        						<label style="color: white;">Titulo:</label>
+	        					</div>
+	        					<div class="col">
+	        						<input type="text" class="form-control" name="nombre" th:field="*{titulo}">
+	        					</div>
+	        				</div>        				
+	        			</div>
+						<div class="col form-control" style="background-color: gray;">
+	        				<div class="row align-items-center">
+	        					<div class="col">
+	        						<label style="color: white;">Año:</label>
+	        					</div>
+	        					<div class="col">
+	        						<input type="text" class="form-control" name="anio" th:field="*{anio}">
+	        					</div>
+	        				</div>        				
+	        			</div>
+						<div class="col form-control" style="background-color: gray;">
+	        				<div class="row align-items-center">
+	        					<div class="col-auto">
+	        						<label style="color: white;">Autor:</label>
+	        					</div>
+	        					<div class="col">
+	        						<select class="form-control" name="autor" th:field="*{autor}">
+										<option th:each="autor : ${listaAutores}" th:value="${autor.id}"  th:text="${autor.nombre}"></option>
+									</select>
+	        					</div>
+	        				</div>        				
+	        			</div>
+						<div class="col form-control" style="background-color: gray;">
+	        				<div class="row align-items-center">
+	        					<div class="col">
+	        						<label style="color: white;">Editorial:</label>
+	        					</div>
+	        					<div class="col">
+	        						<select class="form-control" name="editorial" th:field="*{editorial}">
+										<option th:each="editorial : ${listaEditoriales}" th:value="${editorial.id}"  th:text="${editorial.nombre}"></option>
+									</select>
+	        					</div>
+	        				</div>        				
+	        			</div>
+	        		</div>
+
+
+
+					<div class="row g-3 align-items-center">
+						<div class="col form-control" style="background-color: gray;">
+	        				<div class="row align-items-center">
+	        					<div class="col">
+	        						<label style="color: white;">ISBN:</label>
+	        					</div>
+	        					<div class="col">
+	        						<input type="text" class="form-control" name="isbn" th:field="*{isbn}">
+	        					</div>
+	        				</div>        				
+	        			</div>
+
+						<div class="col form-control" style="background-color: gray;">
+	        				<div class="row align-items-center">
+	        					<div class="col">
+	        						<label style="color: white;">Ejemplares:</label>
+	        					</div>
+	        					<div class="col">
+	        						<input type="text" class="form-control" name="ejemplares" th:field="*{ejemplares}">
+	        					</div>
+	        				</div>        				
+	        			</div>
+
+						<div class="col form-control" style="background-color: gray;">
+	        				<div class="row align-items-center">
+	        					<div class="col">
+	        						<label style="color: white;">Ej. Prestados:</label>
+	        					</div>
+	        					<div class="col">
+	        						<input type="text" class="form-control" name="ejPrestados" th:field="*{ejemplaresPrestados}">
+	        					</div>
+	        				</div>        				
+	        			</div>
+
+
+
+						<div class="col form-control" style="background-color: gray;">
+	        				<div class="row g-3 align-items-center">
+	        					<div class="col-auto">
+	        						<label style="color: white;">Alta:</label>
+	        					</div>
+	        					<div class="col-auto">
+				        			<select class="form-control" name="alta" th:field="*{alta}">
+			                        	<option th:if="${libro.alta == 'true'}" value="true">True</option>
+					        			<option th:unless="${libro.alta == 'false'}" value="false">False</option>
+					        			<option th:if="${libro.alta == 'false'}" value="false">False</option>
+					        			<option th:unless="${libro.alta == 'true'}" value="true">True</option>
+					        		</select>
+	        					</div>
+	        				</div>
+	        			</div>
+					</div>
+
+					<div class="col form-control" style="background-color: gray;">
+						<div class="row g-3 align-items-center">
+							<input class="btn btn-success" type="submit" value="Agregar">
+						</div>
+					</div>
+	        	</form>
+	        </div>
+	    </div>
+	    <div class="container form-control divP d-grid gap-2 d-md-flex justify-content-md-end" style="background-color: black;">
+        	<a href="/" class="btn btn-primary me-md-2">Volver</a>
+    	</div>
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+</body>
+</html>
