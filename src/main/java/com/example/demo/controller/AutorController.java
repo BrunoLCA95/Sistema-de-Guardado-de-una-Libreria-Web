@@ -43,7 +43,7 @@ public class AutorController {
 		}else {
 			model.addAttribute("autor", new Autor());	
 		}
-		return "/autor-from";
+		return "autor-from";
 	}
 	
 	
