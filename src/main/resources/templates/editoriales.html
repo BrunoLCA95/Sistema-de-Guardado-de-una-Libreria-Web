@@ -37,9 +37,9 @@
                     <tr>
                         <th scope="row" th:text="${editorial.id}"></th>
                         <th scope="row" th:text="${editorial.nombre}"></th>
-                        <th scope="row" th:text="${editorial.nombre}"></th>
-                        <td><a href="#" class="btn btn-warning" th:href="@{/editorial-from/{id}(id=${editorial.id})}">Modificar</a></td>
-                        <td><a class="btn btn-danger" th:href="@{/editorial-delete/{id}(id=${editorial.id})}">Eliminar</a></td>
+                        <th scope="row" th:text="${editorial.alta}"></th>
+                        <td><a href="#" class="btn btn-warning" th:href="@{/editoriales/editorial-from/{id}(id=${editorial.id})}">Modificar</a></td>
+                        <td><a class="btn btn-danger" th:href="@{/editoriales/editorial-delete/{id}(id=${editorial.id})}">Eliminar</a></td>
                     </tr>
                 </tbody>
             </table>

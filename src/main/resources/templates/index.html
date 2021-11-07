@@ -8,206 +8,80 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-	<script type="text/javascript" src="https://cdn.bootcss.com/turn.js/3/turn.min.js"></script>
-
 </head>
-<body style="background-color: black;">
+<style>
+    html,body{
+    color:white;
+    font-family:'Opens Sans',helvetica;  
+    height:100%;
+    width:100%;
+    margin: 0px;
+    }
+
+    .portada{
+    background: url(https://cdn.discordapp.com/attachments/905954770672554037/906737618006466570/pru.jpeg) no-repeat fixed center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    width: 100% ;
+    text-align: center;
+
+    }
+
+    .text{
+    margin: 15vw;
+    padding: 30px;
+    background: rgba(14, 8, 8, 0.74);
+    display: inline-block;
+    }
+
+    .titulo{
+        color: #0ba2d4;
+        align-items: center;
+        font-size: 3vw;
+        text-align: center;
+    }
+    .items{
+        color: #38c7ccf5;
+        align-items: center;
+        font-size: 2vw;
+        text-align: center;
+    }
     
-    <div class="container form-control divP" style="background-color: gray;">
-        <label>Registros de Autores</label>
-    
 
-    <style type="text/css">
-		body {
-			background: #ccc;
-		}
 
-		#book {
-			width: 800px;
-			height: 500px;
-		}
-
-		#book .turn-page {
-			background-color: white;
-		}
-
-		#book .cover {
-			background: #333;
-		}
-
-		#book .cover h1 {
-			color: white;
-			text-align: center;
-			font-size: 50px;
-			line-height: 500px;
-			margin: 0px;
-		}
-
-		#book .loader {
-			background-image: url(loader.gif);
-			width: 24px;
-			height: 24px;
-			display: block;
-			position: absolute;
-			top: 238px;
-			left: 188px;
-		}
-
-		#book .data {
-			text-align: center;
-			font-size: 40px;
-			color: #999;
-			line-height: 500px;
-		}
-
-		#controls {
-			width: 800px;
-			text-align: center;
-			margin: 20px 0px;
-			font: 30px arial;
-		}
-
-		#controls input,
-		#controls label {
-			font: 30px arial;
-		}
-
-		#book .odd {
-			background-image: -webkit-linear-gradient(left, #FFF 95%, #ddd 100%);
-			background-image: -moz-linear-gradient(left, #FFF 95%, #ddd 100%);
-			background-image: -o-linear-gradient(left, #FFF 95%, #ddd 100%);
-			background-image: -ms-linear-gradient(left, #FFF 95%, #ddd 100%);
-		}
-
-		#book .even {
-			background-image: -webkit-linear-gradient(right, #FFF 95%, #ddd 100%);
-			background-image: -moz-linear-gradient(right, #FFF 95%, #ddd 100%);
-			background-image: -o-linear-gradient(right, #FFF 95%, #ddd 100%);
-			background-image: -ms-linear-gradient(right, #FFF 95%, #ddd 100%);
-		}
-	</style>
-<!-- Luego el diseño: -->
-	<div id="book">
-		<div class="cover">
-			<!-- - Aquí está la página de flip-->
-            <img src="../static/img/portada.jpg" width="400" height="500">
-		</div>
-        <div class="container form-control divP" style="background-color: rgb(138, 118, 88);">
-            <img src="../static/img/libros.png" width="400" height="500">
-        </div>
-        <div class="container">
-            <div class="container form-control">
-                <label for="">Libros</label>
-
-            </div>
-        </div>
+</style>
+<body>
+    <!--margin: 200px 0px 30px 0px;-->  
+    <div class="portada">
         
-	</div>
-	
-<!-- - Aquí están los datos paginados-->
-	<div id="controls">
-		<label for="page-number">Page:</label> <input type="text" size="3" id="page-number"> of <span
-			id="number-pages"></span>
-	</div>
-
-<!-- El siguiente es el código clave js-->
-<script type="text/javascript">
-
-		var numberOfPages = 100;
-
-		function addPage(page, book) {
-			if (!book.turn('hasPage', page)) {
-				var element = $('<div />', { 'class': 'page ' + ((page % 2 == 0) ? 'odd' : 'even'), 'id': 'page-' + page }).html('<i class="loader"></i>');
-				book.turn('addPage', element, page);
-				setTimeout(function () {
-					element.html('<div class="data">Data for page ' + page + '</div>');
-				}, 10);
-			}
-		}
-
-		$(window).ready(function () {
-			$('#book').turn({
-                autoCenter: true,
-                center: true,
-				acceleration: true,
-				pages: numberOfPages,
-				elevation: 50,
-				gradients: !$.isTouch,
-				when: {
-					turning: function (e, page, view) {
-						var range = $(this).turn('range', page);
-						for (page = range[0]; page < range[1]; page++)
-							addPage(page, $(this));
-					},
-
-					turned: function (e, page) {
-						$('#page-number').val(page);
-					}
-				}
-			});
-
-			$('#number-pages').html(numberOfPages);
-			$('#page-number').keydown(function (e) {
-				if (e.keyCode == 13)
-					$('#book').turn('page', $('#page-number').val());
-
-			});
-		});
-
-		$(window).bind('keydown', function (e) {
-
-			if (e.target && e.target.tagName.toLowerCase() != 'input')
-				if (e.keyCode == 37)
-					$('#book').turn('previous');
-				else if (e.keyCode == 39)
-					$('#book').turn('next');
-
-		});
-
-	</script>
-	<script>
-		$("#book").on("touchstart", function (e) {
-			// determina si el comportamiento predeterminado se puede deshabilitar
-			if (e.cancelable) {
-				// determina si el comportamiento predeterminado ha sido deshabilitado
-				if (!e.defaultPrevented) {
-					e.preventDefault();
-				}
-			}
-			startX = e.originalEvent.changedTouches[0].pageX,
-				startY = e.originalEvent.changedTouches[0].pageY;
-		});
-		$("#book").on("touchend", function (e) {
-			// determina si el comportamiento predeterminado se puede deshabilitar
-			if (e.cancelable) {
-				// determina si el comportamiento predeterminado ha sido deshabilitado
-				if (!e.defaultPrevented) {
-					e.preventDefault();
-				}
-			}
-			moveEndX = e.originalEvent.changedTouches[0].pageX,
-				moveEndY = e.originalEvent.changedTouches[0].pageY,
-				X = moveEndX - startX,
-				Y = moveEndY - startY;
-			// Deslizar hacia la izquierda y hacia la derecha
-			if (X > 50) {
-				$('#book').turn('previous');
-			}
-			// Deslizar hacia la derecha y hacia la izquierda
-			else if (X < -50) {
-				$('#book').turn('next');
-			}
-		});
-	</script>
+        <div class="text">
 
 
-</div>
+                    <div class="titulo">
+                        <p>Libreria Web V1.0</p>
+                    </div>
+                    <br>
+                    <div class="items">
+						<a href="/libros/">Libros</a>
+                    </div>
+                    <div class="items">
+						<a href="/autores/">Autores</a>
+                    </div>
+                    <div class="items">
+						<a href="/editoriales/">Editoriales</a>
+                    </div>
 
 
+        </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-        crossorigin="anonymous"></script>
+
+    </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 </body>
 </html>

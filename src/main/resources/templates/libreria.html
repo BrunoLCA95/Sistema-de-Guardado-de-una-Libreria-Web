@@ -17,7 +17,7 @@
     <div class="container form-control divP" style="background-color: gray;">
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 	        <div class="container form-control divP" style="background-color: black;">
-	        	<a href="/libros-from/000000000" class="btn btn-primary">Agregar</a>
+	        	<a href="/libros/libros-from/000000000" class="btn btn-primary">Agregar</a>
 	        </div>
 	    </div>
         <div class="container form-control table-responsive" style="background-color: black;">
@@ -53,8 +53,8 @@
                         <th scope="row" th:text="${libro.ejemplaresPrestados}"></th>
                         <th scope="row" th:text="${libro.ejemplaresRestantes}"></th>
                         <th scope="row" th:text="${libro.alta}"></th>
-                        <td><a href="#" class="btn btn-warning" th:href="@{/libros-from/{id}(id=${libro.id})}">Modificar</a></td>
-                        <td><a class="btn btn-danger" th:href="@{/libro-delete/{id}(id=${libro.id})}">Eliminar</a></td>
+                        <td><a href="#" class="btn btn-warning" th:href="@{/libros/libros-from/{id}(id=${libro.id})}">Modificar</a></td>
+                        <td><a class="btn btn-danger" th:href="@{/libros/libro-delete/{id}(id=${libro.id})}">Eliminar</a></td>
                     </tr>
                 </tbody>
             </table>

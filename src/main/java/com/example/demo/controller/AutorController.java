@@ -12,7 +12,7 @@ import com.example.demo.entity.Autor;
 import com.example.demo.service.AutorService;
 
 @Controller
-@RequestMapping("/autor")
+@RequestMapping("/autores")
 public class AutorController {
 
 	@Autowired
@@ -95,7 +95,7 @@ public class AutorController {
 	public String delete(@PathVariable String id, Model model) {
 		autorService.delete(id);
 		
-		return "redirect:/autor/";
+		return "redirect:/autores/";
 	}
 	
 

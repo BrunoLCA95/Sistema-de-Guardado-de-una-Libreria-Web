@@ -35,7 +35,7 @@ public class Editorial {
         this.nombre = nombre;
     }
 
-    public String isAlta() {
+    public String getAlta() {
         return alta;
     }
 
